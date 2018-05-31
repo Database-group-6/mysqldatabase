@@ -192,7 +192,7 @@
 
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li>Change information</li>
+					<li>Change information</li><li>fail</li>
 				</ol>
 				<!-- end breadcrumb -->
 
@@ -215,6 +215,7 @@
 				<!-- widget grid -->
 				<section id="widget-grid" class="">
 				
+				<h1 style="color:red " >Query Failed!</h1><h2 style="color:red " >ID doesn't exist</h2>
 				<!-- START ROW -->
 				
 				<div class="row">

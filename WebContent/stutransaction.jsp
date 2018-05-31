@@ -152,23 +152,24 @@
 
 				<ul>
 					<li>
-						<a href='<s:url action="whiteinformation"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Home</span></a>
+						<a href='<s:url action="whiteinformation-stu"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Home</span></a>
 					</li>
 						
 					<li>
-						<a href='<s:url action="createstudent"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-table"></i> <span class="menu-item-parent">Create Student Account</span></a>
+						<a href='<s:url action="changestuinformation"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-table"></i> <span class="menu-item-parent">Change Information</span></a>
 						
 					</li>
 					
-					<li>
-						<a href='<s:url action="createmerchant"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-map-marker"></i> <span class="menu-item-parent">Create Merchant Account</span></a>
-					</li>
 					
 					<li>
-						<a href='<s:url action="transaction"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-desktop"></i> <span class="menu-item-parent">Check Transaction</span></a>
+						<a href='<s:url action="transactionstu"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-desktop"></i> <span class="menu-item-parent">Check Transaction</span></a>
 					</li>
 					<li>
-						<a href='<s:url action="change"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Change Information</span></a>
+						<a href='<s:url action="losestucard"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-map-marker"></i> <span class="menu-item-parent">Lose Card</span></a>
+					</li>
+					 
+					<li>
+						<a href='<s:url action="moneycalculatestu"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Money Statistics</span></a>
 					</li>
 					<li>
 						<a href="login.jsp"><i class="fa fa-lg fa-fw fa-pencil-square-o"></i> <span class="menu-item-parent">Logout</span></a>
@@ -192,7 +193,7 @@
 
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li>Change information</li>
+					<li>Check Transaction</li>
 				</ol>
 				<!-- end breadcrumb -->
 
@@ -217,6 +218,12 @@
 				
 				<!-- START ROW -->
 				
+				
+				
+				
+				
+				
+					
 				<div class="row">
 				
 						<!-- NEW COL START -->
@@ -239,35 +246,25 @@
 									<!-- widget content -->
 									<div class="widget-body no-padding">
 			
-										<s:form action="search" class="smart-form">
+										<s:form action="checkstu" class="smart-form">
 											<input name="loginID" type="hidden" value="<s:property value="loginID"/>" />
 											
 				
 											<fieldset>
 												
-												<section>
-													<label class="label">Searched ID</label>
-													<label class="input">
-														<input type="text" name="nameID" class="input-sm">
+												
+													
+												
+												<section class="col col-6">
+													<label class="input"> <i class="icon-append fa fa-calendar"></i>
+														<input type="text" name="startdate" id="startdate" placeholder="Please choose start date">
 													</label>
 												</section>
-												<section>
-													<label class="label">ID Identity</label>
-													<div class="row">
-														<div class="col col-4">
-															<label class="radio">
-																<input type="radio" name="Identity" value ="0" checked="checked">
-																<i></i>Student</label>
-															<label class="radio">
-																<input type="radio" name="Identity" value ="1">
-																<i></i>Merchant</label>
-															
-														</div>
-														
-													</div>
-													
-												</section>	
-												
+												<section class="col col-6">
+													<label class="input"> <i class="icon-append fa fa-calendar"></i>
+														<input type="text" name="finishdate" id="finishdate" placeholder="Please choose finish date">
+													</label>
+												</section>
 												
 											
 											</fieldset>
@@ -294,12 +291,10 @@
 							<!-- end widget -->
 				
 						</article>
-						</div>
-					
-					
+						</div>	
 					
 						<!-- END COL -->
-						</section>
+				</section>
 						
 			</div>
 	

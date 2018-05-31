@@ -152,23 +152,24 @@
 
 				<ul>
 					<li>
-						<a href='<s:url action="whiteinformation"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Home</span></a>
+						<a href='<s:url action="whiteinformation-stu"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Home</span></a>
 					</li>
 						
 					<li>
-						<a href='<s:url action="createstudent"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-table"></i> <span class="menu-item-parent">Create Student Account</span></a>
+						<a href='<s:url action="changestuinformation"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-table"></i> <span class="menu-item-parent">Change Information</span></a>
 						
 					</li>
 					
-					<li>
-						<a href='<s:url action="createmerchant"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-map-marker"></i> <span class="menu-item-parent">Create Merchant Account</span></a>
-					</li>
 					
 					<li>
-						<a href='<s:url action="transaction"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-desktop"></i> <span class="menu-item-parent">Check Transaction</span></a>
+						<a href='<s:url action="transactionstu"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-desktop"></i> <span class="menu-item-parent">Check Transaction</span></a>
 					</li>
 					<li>
-						<a href='<s:url action="change"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Change Information</span></a>
+						<a href='<s:url action="losestucard"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-map-marker"></i> <span class="menu-item-parent">Lose Card</span></a>
+					</li>
+					 
+					<li>
+						<a href='<s:url action="moneycalculatestu"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Money Statistics</span></a>
 					</li>
 					<li>
 						<a href="login.jsp"><i class="fa fa-lg fa-fw fa-pencil-square-o"></i> <span class="menu-item-parent">Logout</span></a>
@@ -192,7 +193,7 @@
 
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li>Change information</li>
+					<li>Check Transaction</li><li>Query result</li>
 				</ol>
 				<!-- end breadcrumb -->
 
@@ -217,6 +218,12 @@
 				
 				<!-- START ROW -->
 				
+				
+				
+				
+				
+				
+					
 				<div class="row">
 				
 						<!-- NEW COL START -->
@@ -239,35 +246,25 @@
 									<!-- widget content -->
 									<div class="widget-body no-padding">
 			
-										<s:form action="search" class="smart-form">
+										<s:form action="checkstu" class="smart-form">
 											<input name="loginID" type="hidden" value="<s:property value="loginID"/>" />
 											
 				
 											<fieldset>
 												
-												<section>
-													<label class="label">Searched ID</label>
-													<label class="input">
-														<input type="text" name="nameID" class="input-sm">
+												
+													
+												
+												<section class="col col-6">
+													<label class="input"> <i class="icon-append fa fa-calendar"></i>
+														<input type="text" name="startdate" id="startdate" placeholder="Please choose start date">
 													</label>
 												</section>
-												<section>
-													<label class="label">ID Identity</label>
-													<div class="row">
-														<div class="col col-4">
-															<label class="radio">
-																<input type="radio" name="Identity" value ="0" checked="checked">
-																<i></i>Student</label>
-															<label class="radio">
-																<input type="radio" name="Identity" value ="1">
-																<i></i>Merchant</label>
-															
-														</div>
-														
-													</div>
-													
-												</section>	
-												
+												<section class="col col-6">
+													<label class="input"> <i class="icon-append fa fa-calendar"></i>
+														<input type="text" name="finishdate" id="finishdate" placeholder="Please choose finish date">
+													</label>
+												</section>
 												
 											
 											</fieldset>
@@ -294,12 +291,71 @@
 							<!-- end widget -->
 				
 						</article>
-						</div>
-					
-					
+						
+						
+						
+						<article class="col-sm-12 col-md-12 col-lg-10">
+
+							<!-- Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget jarviswidget-color-greenLight" id="wid-id-3" data-widget-editbutton="false">
+								
+								<header>
+									<span class="widget-icon"> <i class="fa fa-table"></i> </span>
+									<h2>Check Result</h2>
+
+								</header>		
+				
+				<!-- widget div-->
+								<div>
+
+									<!-- widget edit box -->
+									<div class="jarviswidget-editbox">
+										<!-- This area used as dropdown edit box -->
+									</div>
+									<!-- end widget edit box -->
+
+									<!-- widget content -->
+									<div class="widget-body no-padding" overflow="auto">
+										<table class="table table-bordered" id="main_info_table">
+	
+											<thead>
+												<tr>
+													
+													<th> Trade Time </th>
+													<th> Trade Aim </th>
+													<th> Money </th>
+													
+												</tr>
+											</thead>
+											
+											
+											<s:iterator value="listresult" id="u" >
+											<tr>
+											
+											
+											<th><s:property value="#u.tradetime"/></th>
+											
+											<th><s:property value="#u.tradeid" /></th>
+											<th><s:property value="#u.trademoney" /></th>
+											
+											</tr>
+											</s:iterator>
+	
+	
+									</table>
+								</div>
+								
+								
+
+								<!-- end widget div -->
+
+							</div>
+							<!-- end widget -->
+							</article>
+						</div>	
 					
 						<!-- END COL -->
-						</section>
+				</section>
 						
 			</div>
 	

@@ -152,23 +152,24 @@
 
 				<ul>
 					<li>
-						<a href='<s:url action="whiteinformation"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Home</span></a>
+						<a href='<s:url action="whiteinformation-stu"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Home</span></a>
 					</li>
 						
 					<li>
-						<a href='<s:url action="createstudent"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-table"></i> <span class="menu-item-parent">Create Student Account</span></a>
+						<a href='<s:url action="changestuinformation"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-table"></i> <span class="menu-item-parent">Change Information</span></a>
 						
 					</li>
 					
-					<li>
-						<a href='<s:url action="createmerchant"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-map-marker"></i> <span class="menu-item-parent">Create Merchant Account</span></a>
-					</li>
 					
 					<li>
-						<a href='<s:url action="transaction"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-desktop"></i> <span class="menu-item-parent">Check Transaction</span></a>
+						<a href='<s:url action="transactionstu"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-desktop"></i> <span class="menu-item-parent">Check Transaction</span></a>
 					</li>
 					<li>
-						<a href='<s:url action="change"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Change Information</span></a>
+						<a href='<s:url action="losestucard"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-map-marker"></i> <span class="menu-item-parent">Lose Card</span></a>
+					</li>
+					 
+					<li>
+						<a href='<s:url action="moneycalculatestu"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Money Statistics</span></a>
 					</li>
 					<li>
 						<a href="login.jsp"><i class="fa fa-lg fa-fw fa-pencil-square-o"></i> <span class="menu-item-parent">Logout</span></a>
@@ -192,7 +193,7 @@
 
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li>Change information</li>
+					<li>Update Information</li>
 				</ol>
 				<!-- end breadcrumb -->
 
@@ -217,6 +218,7 @@
 				
 				<!-- START ROW -->
 				
+				
 				<div class="row">
 				
 						<!-- NEW COL START -->
@@ -225,6 +227,11 @@
 							<!-- Widget ID (each widget will need unique ID)-->
 							<div class="jarviswidget" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false">
 								
+								<header>
+									<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+									<h2>Change User Basic Information</h2>
+				
+								</header>
 				
 								<!-- widget div-->
 								<div>
@@ -238,52 +245,61 @@
 				
 									<!-- widget content -->
 									<div class="widget-body no-padding">
-			
-										<s:form action="search" class="smart-form">
-											<input name="loginID" type="hidden" value="<s:property value="loginID"/>" />
-											
 				
-											<fieldset>
-												
+										<s:form action="updatestu" class="smart-form">									
+											 <input name="loginID" type="hidden" value="<s:property value="loginID"/>" />
+											 
+											<s:iterator value="result" id="u" >
+											<!--  <input name="checkbox_toggle" type="hidden" value="<s:property value="#u.checkbox_toggle"/>" />  -->
+											<!--  <input name="oldurl" type="hidden" value="<s:property value="#u.url"/>" />
+											<input name="oldstate" type="hidden" value="<s:property value="#u.state"/>" />
+											<input name="oldtag" type="hidden" value="<s:property value="#u.tag"/>" />   -->
+											<fieldset>										
+											  		
 												<section>
-													<label class="label">Searched ID</label>
+													<label class="label">UserName/StudentName</label>
 													<label class="input">
-														<input type="text" name="nameID" class="input-sm">
+														<input type="text" name="name" value="<s:property value="#u.name"/>" class="input-sm">
 													</label>
-												</section>
-												<section>
-													<label class="label">ID Identity</label>
-													<div class="row">
-														<div class="col col-4">
-															<label class="radio">
-																<input type="radio" name="Identity" value ="0" checked="checked">
-																<i></i>Student</label>
-															<label class="radio">
-																<input type="radio" name="Identity" value ="1">
-																<i></i>Merchant</label>
-															
-														</div>
+												</section>		
+											  	<section>
+													<label class="label">Password</label>
+													<label class="input">
+														<input type="text" name="password" value="<s:property value="#u.password"/>" class="input-sm" >
+													</label>
+											 	</section>
+											 	<section>
+													<label class="label">Email</label>
+													<label class="input">
+														<input type="text" name="email" value="<s:property value="#u.email"/>" class="input-sm">
+													</label>
+												</section>	
+												<!-- 
+											 	<section>
+													<label class="label">The Url State</label>
+													<div class="inline-group">
+														<label class="radio">
+															<input type="radio" name="state" checked="checked" value="open">
+															<i></i>OPEN</label>
+														<label class="radio">
+															<input type="radio" name="state" value="close">
+															<i></i>CLOSE</label>
 														
 													</div>
-													
-												</section>	
-												
-												
-											
-											</fieldset>
-																							
-											<footer>
+												</section>
+												 -->
+												<footer>
 													<button type="submit" class="btn btn-primary">
 														Submit
 													</button>
 													<button type="button" class="btn btn-default" onclick="window.history.back();">
 														Back
 													</button>
-											</footer>
+												</footer>
+											</fieldset>
+											</s:iterator>
 										</s:form>
-				
-
-
+										
 									</div>
 									<!-- end widget content -->
 				
@@ -294,12 +310,12 @@
 							<!-- end widget -->
 				
 						</article>
-						</div>
-					
-					
+					</div>
+				
+				
 					
 						<!-- END COL -->
-						</section>
+				</section>
 						
 			</div>
 	

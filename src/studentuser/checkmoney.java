@@ -1,19 +1,20 @@
-package administrator;
+package studentuser;
 
 import java.util.ArrayList;
 
-public class checktransaction {
+public class checkmoney {
+  
   public String Str;
-  private String nameID;
   private String loginID;
+  
   private String startdate;
   private String finishdate;
-  private String Identity;
-  ArrayList listresult = null;
-  private String checkid;
   private String tradetime;
+  
   private String tradeid;
   private String trademoney;
+  ArrayList listresult = null;
+  
   public String passhref()
   {
     Str = "success";
@@ -22,20 +23,16 @@ public class checktransaction {
   
   public String check()
   {
-    //listresult = songyunfei's API;
-        Str = "success";
-    Str = "fail1";//查无此人
-    Str = "fail2";//时间不对
-    Str = "fail3";//无交易记录
+    
     return Str;
   }
 
-  public String getNameID() {
-    return nameID;
+  public String getLoginID() {
+    return loginID;
   }
 
-  public void setNameID(String nameID) {
-    this.nameID = nameID;
+  public void setLoginID(String loginID) {
+    this.loginID = loginID;
   }
 
   public String getStartdate() {
@@ -52,30 +49,6 @@ public class checktransaction {
 
   public void setFinishdate(String finishdate) {
     this.finishdate = finishdate;
-  }
-
-  public String getIdentity() {
-    return Identity;
-  }
-
-  public void setIdentity(String identity) {
-    Identity = identity;
-  }
-
-  public ArrayList getListresult() {
-    return listresult;
-  }
-
-  public void setListresult(ArrayList listresult) {
-    this.listresult = listresult;
-  }
-
-  public String getCheckid() {
-    return checkid;
-  }
-
-  public void setCheckid(String checkid) {
-    this.checkid = checkid;
   }
 
   public String getTradetime() {
@@ -102,12 +75,12 @@ public class checktransaction {
     this.trademoney = trademoney;
   }
 
-  public String getLoginID() {
-    return loginID;
+  public ArrayList getListresult() {
+    return listresult;
   }
 
-  public void setLoginID(String loginID) {
-    this.loginID = loginID;
+  public void setListresult(ArrayList listresult) {
+    this.listresult = listresult;
   }
-  
+
 }

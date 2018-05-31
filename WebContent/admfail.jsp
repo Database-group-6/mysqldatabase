@@ -218,6 +218,7 @@
 				<!-- START ROW -->
 				
 				<h1  size="50" style="color:red ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System Error or Internet doesn't work! </h1>
+				<h1 style="color:red " > Operation Fail</h1>
 					
 					
 					

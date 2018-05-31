@@ -46,5 +46,43 @@
         	<result name = "success">/changeinformation.jsp</result>				
 			<result name = "error">/admfail.jsp</result>
         </action>
+        <action name = "search" class = "administrator.changeinformation" method = "search">
+        	<result name = "success">/changeinformation1.jsp</result>				
+			<result name = "error">/searchfail.jsp</result>
+        </action>
+        <action name = "update" class = "administrator.changeinformation" method = "update">
+        	<result name = "success">/successdomain.jsp</result>				
+			<result name = "error">/updatefail.jsp</result>
+        </action>
+    </package>
+    <package name="studentuser" extends="struts-default">
+    	<action name = "whiteinformation-stu" class = "studentuser.checkmoney" method = "passhref">
+        	<result name = "success">/stumain.jsp</result>				
+			<result name = "error">/stufail.jsp</result>
+        </action>
+        <action name = "changestuinformation" class = "studentuser.changestuinformation" method = "passhref">
+        	<result name = "success">/changestuinformation.jsp</result>				
+			<result name = "error">/stufail.jsp</result>
+        </action>
+        <action name = "updatestu" class = "studentuser.changestuinformation" method = "update">
+        	<result name = "success">/successdomainstu.jsp</result>				
+			<result name = "error">/stufail.jsp</result>
+        </action>
+        <action name = "transactionstu" class = "studentuser.checkmoney" method = "passhref">
+        	<result name = "success">/stutransaction.jsp</result>				
+			<result name = "error">/stufail.jsp</result>
+        </action>
+        <action name = "checkstu" class = "studentuser.checkmoney" method = "check">
+        	<result name = "success">/stutraresult.jsp</result>				
+			<result name = "error">/stufail.jsp</result>
+        </action>
+        <action name = "losestucard" class = "studentuser.stulosecard" method = "passhref">
+        	<result name = "success">/losestucard.jsp</result>				
+			<result name = "error">/stufail.jsp</result>
+        </action>
+        <action name = "moneycalculatestu" class = "studentuser.checkmoney" method = "passhref">
+        	<result name = "success">/stustatistics.jsp</result>				
+			<result name = "error">/stufail.jsp</result>
+        </action>
     </package>
 </struts>
