@@ -13,5 +13,38 @@
 			<result name = "error">/wronglogin.jsp</result>
         </action>
     </package>
-    
+    <package name="administrator" extends="struts-default">
+    <action name = "whiteinformation" class = "administrator.CreateAccount" method = "passhref">
+        	<result name = "success">/admmain.jsp</result>				
+			<result name = "error">/admfail.jsp</result>
+        </action>
+    	<action name = "createstudent" class = "administrator.CreateAccount" method = "passhref">
+        	<result name = "success">/createuser.jsp</result>				
+			<result name = "error">/admfail.jsp</result>
+        </action>
+        <action name = "createmerchant" class = "administrator.CreateAccount" method = "passhref">
+        	<result name = "success">/createmerchant.jsp</result>				
+			<result name = "error">/admfail.jsp</result>
+        </action>
+        <action name = "merchant-create" class = "administrator.CreateAccount" method = "createmerchant">
+        	<result name = "success">/successdomain.jsp</result>				
+			<result name = "error">/createfail2.jsp</result>
+        </action>
+        <action name = "student-create" class = "administrator.CreateAccount" method = "createstudent">
+        	<result name = "success">/successdomain.jsp</result>				
+			<result name = "error">/createfail1.jsp</result>
+        </action>
+        <action name = "transaction" class = "administrator.checktransaction" method = "passhref">
+        	<result name = "success">/checktransaction.jsp</result>				
+			<result name = "error">/fail.jsp</result>
+        </action>
+        <action name = "check" class = "administrator.checktransaction" method = "check">
+        	<result name = "success">/checkresult.jsp</result>				
+			<result name = "error">/checkfail.jsp</result>
+        </action>
+        <action name = "change" class = "administrator.changeinformation" method = "passhref">
+        	<result name = "success">/changeinformation.jsp</result>				
+			<result name = "error">/admfail.jsp</result>
+        </action>
+    </package>
 </struts>

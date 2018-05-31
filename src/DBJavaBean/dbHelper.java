@@ -24,10 +24,10 @@ public class dbHelper {
           e1.printStackTrace();
       }
       //数据准备
-      String url = "jdbc:mysql://123.206.9.180:3306/mylabdb";    //JDBC的URL
+      String url = "jdbc:mysql://127.0.0.1:3306/mylabdb";    //JDBC的URL
       String user = "root";
-      String pwd = "password";
-      String connectionString = "jdbc:mysql://123.206.9.180:3306/" + "BookDB" + "?user=" + user + "&password=" + pwd + "&useUnicode=true&characterEncoding=UTF-8";
+      String pwd = "tjr19970907";
+      String connectionString = "jdbc:mysql://127.0.0.1:3306/" + "mylabdb" + "?user=" + user + "&password=" + pwd + "&useUnicode=true&characterEncoding=UTF-8";
       //调用DriverManager对象的getConnection()方法，获得一个Connection对象
       try {
           //conn = DriverManager.getConnection(url, user, pwd);
@@ -51,7 +51,7 @@ public class dbHelper {
 
 
   //创建商家
-  public boolean createMerchant(String mid, String name, int pwd, String bankid){
+  public boolean createMerchant(String mid, String name,String pwd, String bankid){
       boolean st = false;
       try{
           Statement stmt  = conn.createStatement();

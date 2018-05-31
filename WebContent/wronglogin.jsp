@@ -93,7 +93,7 @@
 
 					</div>
 					<h1 style="color:red ">The Password Is Wrong </h1>
-					<h1 style="color:red ">OR</h1>
+					<h1 style="color:red ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR</h1>
 					<h1 style="color:red ">The UserName Is Not Existed</h1>
 					<div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
 						<div class="well no-padding">
