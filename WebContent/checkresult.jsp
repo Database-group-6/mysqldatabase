@@ -267,7 +267,19 @@
 													</div>
 													
 												</section>	
-												<section class="col col-6">
+												<section>
+													<label class="label">Startdate</label>
+													<label class="input">
+														<input type="text" name="startdate" class="input-sm">
+													</label>
+												</section>
+												<section>
+													<label class="label">FinishDate</label>
+													<label class="input">
+														<input type="text" name="finishdate" class="input-sm">
+													</label>
+												</section>
+												<!--<section class="col col-6">
 													<label class="input"> <i class="icon-append fa fa-calendar"></i>
 														<input type="text" name="startdate" id="startdate" placeholder="Please choose start date">
 													</label>
@@ -277,7 +289,7 @@
 														<input type="text" name="finishdate" id="finishdate" placeholder="Please choose finish date">
 													</label>
 												</section>
-												
+												-->
 											
 											</fieldset>
 																							
@@ -342,11 +354,11 @@
 											<s:iterator value="listresult" id="u" >
 											<tr>
 											
-											<th><s:property value="#u.checkid"/></th>
-											<th><s:property value="#u.tradetime"/></th>
+											<th><s:property value="#u.ucid"/></th>
+											<th><s:property value="#u.time"/></th>
 											
-											<th><s:property value="#u.tradeid" /></th>
-											<th><s:property value="#u.trademoney" /></th>
+											<th><s:property value="#u.maid" /></th>
+											<th><s:property value="#u.amount" /></th>
 											
 											</tr>
 											</s:iterator>

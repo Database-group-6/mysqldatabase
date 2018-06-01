@@ -1,6 +1,10 @@
 package administrator;
 
 import java.util.ArrayList;
+import java.util.Date;
+
+import DBJavaBean.dbHelper;
+import javafx.scene.control.DatePicker;
 
 public class checktransaction {
   public String Str;
@@ -8,9 +12,10 @@ public class checktransaction {
   private String loginID;
   private String startdate;
   private String finishdate;
-  private String Identity;
+  private int Identity;
   ArrayList listresult = null;
   private String checkid;
+  dbHelper mysql = new dbHelper();
   private String tradetime;
   private String tradeid;
   private String trademoney;
@@ -22,11 +27,39 @@ public class checktransaction {
   
   public String check()
   {
+    if(Identity ==0)
+    {
+      //System.out.println(startdate);
+      //student
+      System.out.println(finishdate);
+      listresult = mysql.queryTransactionByTimeByUid(nameID,startdate,finishdate);
+      if(listresult.size() == 0)
+        Str = "error";
+      //System.out.println(startdate.toString());
+      else
+        Str = "success1";
+      
+    }
+    else if(Identity == 1)
+    {
+      listresult = mysql.queryTransactionByTimeByMid(nameID,startdate,finishdate);
+      if(listresult.size() == 0)
+        Str = "error";
+      //System.out.println(startdate.toString());
+      else
+        Str = "success2";
+    }
+    else
+    {
+      Str = "error";
+    }
+    //Identity nameID startdate finishdate
+    
     //listresult = songyunfei's API;
-        Str = "success";
-    Str = "fail1";//查无此人
-    Str = "fail2";//时间不对
-    Str = "fail3";//无交易记录
+        
+    //Str = "fail1";//查无此人
+    //Str = "fail2";//时间不对
+    //Str = "fail3";//无交易记录
     return Str;
   }
 
@@ -38,30 +71,9 @@ public class checktransaction {
     this.nameID = nameID;
   }
 
-  public String getStartdate() {
-    return startdate;
-  }
+  
 
-  public void setStartdate(String startdate) {
-    this.startdate = startdate;
-  }
-
-  public String getFinishdate() {
-    return finishdate;
-  }
-
-  public void setFinishdate(String finishdate) {
-    this.finishdate = finishdate;
-  }
-
-  public String getIdentity() {
-    return Identity;
-  }
-
-  public void setIdentity(String identity) {
-    Identity = identity;
-  }
-
+  
   public ArrayList getListresult() {
     return listresult;
   }
@@ -109,5 +121,32 @@ public class checktransaction {
   public void setLoginID(String loginID) {
     this.loginID = loginID;
   }
+
+  public int getIdentity() {
+    return Identity;
+  }
+
+  public void setIdentity(int identity) {
+    Identity = identity;
+  }
+
+  public String getStartdate() {
+    return startdate;
+  }
+
+  public void setStartdate(String startdate) {
+    this.startdate = startdate;
+  }
+
+  public String getFinishdate() {
+    return finishdate;
+  }
+
+  public void setFinishdate(String finishdate) {
+    this.finishdate = finishdate;
+  }
+
+  
+
   
 }

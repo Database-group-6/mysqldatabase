@@ -267,7 +267,19 @@
 													</div>
 													
 												</section>	
-												<section class="col col-6">
+												<section>
+													<label class="label">Startdate</label>
+													<label class="input">
+														<input type="text" name="startdate" class="input-sm">
+													</label>
+												</section>
+												<section>
+													<label class="label">FinishDate</label>
+													<label class="input">
+														<input type="text" name="finishdate" class="input-sm">
+													</label>
+												</section>
+												<!-- <section class="col col-6">
 													<label class="input"> <i class="icon-append fa fa-calendar"></i>
 														<input type="text" name="startdate" id="startdate" placeholder="Please choose start date">
 													</label>
@@ -277,7 +289,7 @@
 														<input type="text" name="finishdate" id="finishdate" placeholder="Please choose finish date">
 													</label>
 												</section>
-												
+												-->
 											
 											</fieldset>
 																							

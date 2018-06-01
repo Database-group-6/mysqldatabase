@@ -1,6 +1,11 @@
 package administrator;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import DBJavaBean.dbHelper;
 
 public class changeinformation {
   
@@ -8,7 +13,10 @@ public class changeinformation {
   public String Str;
   private String nameID;
   private int Identity; //不进行变动
+  //ArrayList searchresult = null;
+  //Map searchresult = new HashMap();
   ArrayList searchresult = null;
+  dbHelper mysql = new dbHelper();
   private String oldid; //始终不变的是ID
   private String password;
   private String name;
@@ -19,15 +27,57 @@ public class changeinformation {
     return Str;
   }
   
-  public String search()//搜寻要修改的人物
+  public String search() throws SQLException //搜寻要修改的人物
   //要得到 arraylist 包括 nameID Identity name password email/bank-four
   {
-     
+    if(Identity == 0)
+    {
+      searchresult = mysql.getUserInfo(nameID);
+      //String name = searchresult.("name").toString();
+      //System.out.println(name);
+      if(searchresult.size() == 0)
+        Str = "error";
+      else
+        Str = "success";
+      
+    }
+    else if(Identity == 1)
+    {
+      searchresult = mysql.getMerchantInfo(nameID);
+      //String name = searchresult.("name").toString();
+      //System.out.println(name);
+      if(searchresult.size() == 0)
+        Str = "error";
+      else
+        Str = "success";
+    }
+    else
+    {
+      Str = "error";
+    }
+    //已知nameID ,Identity 返回一个人的所有情况
+    
     return Str;
   }
+  
+  
+
   public String update() //得到内容后进行修改
   {
-    
+    //已经有nameID,Identity,name ,password,four[bankid/email]
+    //nameID不变,其他的进行更新
+    if(Identity == 0)
+    {
+      
+    }
+    else if(Identity == 1)
+    {
+      
+    }
+    else
+    {
+      Str = "error";
+    }
     return Str;
   }
 
@@ -47,13 +97,7 @@ public class changeinformation {
     Identity = identity;
   }
 
-  public ArrayList getSearchresult() {
-    return searchresult;
-  }
-
-  public void setSearchresult(ArrayList searchresult) {
-    this.searchresult = searchresult;
-  }
+  
 
   public String getOldid() {
     return oldid;
@@ -94,4 +138,14 @@ public class changeinformation {
   public void setLoginID(String loginID) {
     this.loginID = loginID;
   }
+
+  public ArrayList getSearchresult() {
+    return searchresult;
+  }
+
+  public void setSearchresult(ArrayList searchresult) {
+    this.searchresult = searchresult;
+  }
+
+  
 }

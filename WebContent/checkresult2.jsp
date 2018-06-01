@@ -1,11 +1,8 @@
 <%@ page language ="java" contentType="text/html;charset=GB18030" pageEncoding="GB18030" %>
 
 <%@page import ="java.util.ArrayList" %>
-<%@page import ="DBJavaBean.dbHelper" %>
 <%@taglib prefix="s" uri="/struts-tags"%>
 <%@page import="LogAction.LoginAction"%>
-
-<%@page import="java.util.HashMap"%>
 <!DOCTYPE html>
 <html lang="en-us">
 	<head>
@@ -195,7 +192,7 @@
 
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li>Change information</li>
+					<li>Administrator</li><li>Check Transaction</li><li>Check Result</li>
 				</ol>
 				<!-- end breadcrumb -->
 
@@ -242,7 +239,7 @@
 									<!-- widget content -->
 									<div class="widget-body no-padding">
 			
-										<s:form action="search" class="smart-form">
+										<s:form action="check" class="smart-form">
 											<input name="loginID" type="hidden" value="<s:property value="loginID"/>" />
 											
 				
@@ -270,8 +267,29 @@
 													</div>
 													
 												</section>	
-												
-												
+												<section>
+													<label class="label">Startdate</label>
+													<label class="input">
+														<input type="text" name="startdate" class="input-sm">
+													</label>
+												</section>
+												<section>
+													<label class="label">FinishDate</label>
+													<label class="input">
+														<input type="text" name="finishdate" class="input-sm">
+													</label>
+												</section>
+												<!--<section class="col col-6">
+													<label class="input"> <i class="icon-append fa fa-calendar"></i>
+														<input type="text" name="startdate" id="startdate" placeholder="Please choose start date">
+													</label>
+												</section>
+												<section class="col col-6">
+													<label class="input"> <i class="icon-append fa fa-calendar"></i>
+														<input type="text" name="finishdate" id="finishdate" placeholder="Please choose finish date">
+													</label>
+												</section>
+												-->
 											
 											</fieldset>
 																							
@@ -298,98 +316,71 @@
 				
 						</article>
 						
-						<article class="col-sm-12 col-md-12 col-lg-8">
-				
+						<article class="col-sm-12 col-md-12 col-lg-10">
+
 							<!-- Widget ID (each widget will need unique ID)-->
-							<div class="jarviswidget" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false">
+							<div class="jarviswidget jarviswidget-color-greenLight" id="wid-id-3" data-widget-editbutton="false">
 								
 								<header>
-									<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-									<h2>Update</h2>
+									<span class="widget-icon"> <i class="fa fa-table"></i> </span>
+									<h2>Check Result</h2>
+
+								</header>		
 				
-								</header>
-				
-								<!-- widget div-->
+				<!-- widget div-->
 								<div>
-				
+
 									<!-- widget edit box -->
 									<div class="jarviswidget-editbox">
 										<!-- This area used as dropdown edit box -->
-				
 									</div>
 									<!-- end widget edit box -->
-				
+
 									<!-- widget content -->
-									<div class="widget-body no-padding">
-				
-										<s:form action="update" class="smart-form">									
-											 <input name="loginID" type="hidden" value="<s:property value="loginID"/>" />
-											 
-											<s:iterator value="searchresult" id="u" >
+									<div class="widget-body no-padding" overflow="auto">
+										<table class="table table-bordered" id="main_info_table">
+	
+											<thead>
+												<tr>
+													<th> Personal ID </th>
+													<th> Trade Time </th>
+													<th> Trade Aim </th>
+													<th> Money </th>
+													
+												</tr>
+											</thead>
 											
-											<!--  <input name="checkbox_toggle" type="hidden" value="<s:property value="#u.checkbox_toggle"/>" />  -->
-											<input name="nameID" type="hidden" value="<s:property value="#u.nameID"/>" />
-											<input name="Identity" type="hidden" value="<s:property value="#u.Identity"/>" />
 											
-											<fieldset>										
-											  		
-												<section>
-													<label class="label">UserName/MerchantName</label>
-													<label class="input">
-														<input type="text" name="name" value="<s:property value="#u.name"/>" class="input-sm">
-													</label>
-												</section>		
-											  	<section>
-													<label class="label">Password</label>
-													<label class="input">
-														<input type="text" name="password" value="<s:property value="#u.password"/>" class="input-sm" >
-													</label>
-											 	</section>
-											 	<section>
-													<label class="label">Email/Bankid</label>
-													<label class="input">
-														<input type="text" name="four" value="<s:property value="#u.four"/>" class="input-sm">
-													</label>
-												</section>	
-												<!-- 
-											 	<section>
-													<label class="label">The Url State</label>
-													<div class="inline-group">
-														<label class="radio">
-															<input type="radio" name="state" checked="checked" value="open">
-															<i></i>OPEN</label>
-														<label class="radio">
-															<input type="radio" name="state" value="close">
-															<i></i>CLOSE</label>
-														
-													</div>
-												</section>
-												 -->
-												<footer>
-													<button type="submit" class="btn btn-primary">
-														Submit
-													</button>
-													<button type="button" class="btn btn-default" onclick="window.history.back();">
-														Back
-													</button>
-												</footer>
-											</fieldset>
+											<s:iterator value="listresult" id="u" >
+											<tr>
+											
+											<th><s:property value="#u.maid" /></th>
+											<th><s:property value="#u.time"/></th>
+											<th><s:property value="#u.ucid"/></th>
+											
+											<th><s:property value="#u.amount" /></th>
+											
+											</tr>
 											</s:iterator>
-										</s:form>
-										
-									</div>
-									<!-- end widget content -->
-				
+	
+	
+									</table>
 								</div>
+								
+								
+
 								<!-- end widget div -->
-				
+
 							</div>
 							<!-- end widget -->
-				
-						</article>
-						
-						
+							</article>
 						</div>
+					
+					
+					
+					
+					
+					
 					
 					
 					
@@ -435,6 +426,26 @@
 			pageSetUp();
 		
 		})
+		
+		
+		// START AND FINISH DATE
+			$('#startdate').datepicker({
+				dateFormat : 'dd.mm.yy',
+				prevText : '<i class="fa fa-chevron-left"></i>',
+				nextText : '<i class="fa fa-chevron-right"></i>',
+				onSelect : function(selectedDate) {
+					$('#finishdate').datepicker('option', 'minDate', selectedDate);
+				}
+			});
+			
+			$('#finishdate').datepicker({
+				dateFormat : 'dd.mm.yy',
+				prevText : '<i class="fa fa-chevron-left"></i>',
+				nextText : '<i class="fa fa-chevron-right"></i>',
+				onSelect : function(selectedDate) {
+					$('#startdate').datepicker('option', 'maxDate', selectedDate);
+				}
+			});
 
 		</script>
 

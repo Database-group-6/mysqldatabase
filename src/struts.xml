@@ -39,7 +39,8 @@
 			<result name = "error">/fail.jsp</result>
         </action>
         <action name = "check" class = "administrator.checktransaction" method = "check">
-        	<result name = "success">/checkresult.jsp</result>				
+        	<result name = "success1">/checkresult.jsp</result>
+        	<result name = "success2">/checkresult2.jsp</result>					
 			<result name = "error">/checkfail.jsp</result>
         </action>
         <action name = "change" class = "administrator.changeinformation" method = "passhref">
