@@ -42,7 +42,7 @@ public class checktransaction {
     }
     else if(Identity == 1)
     {
-      listresult = mysql.queryTransactionByTimeByMid(nameID,startdate,finishdate);
+      listresult = mysql.queryByMid(nameID,startdate,finishdate);
       if(listresult.size() == 0)
         Str = "error";
       //System.out.println(startdate.toString());

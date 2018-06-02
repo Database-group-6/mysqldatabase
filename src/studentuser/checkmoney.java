@@ -1,6 +1,8 @@
 package studentuser;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import DBJavaBean.dbHelper;
 
@@ -8,7 +10,9 @@ public class checkmoney {
   
   public String Str;
   private String loginID;
-  
+  private float balance;
+  private float income;
+  private float out;
   private String startdate;
   private String finishdate;
   private String time;
@@ -27,7 +31,7 @@ public class checkmoney {
   public String check()
   {
     //startdate +finishdate +loginID
-    listresult = mysql.queryTransactionByTimeByUid(loginID,startdate,finishdate);
+    listresult = mysql.queryByUid(loginID,startdate,finishdate);
     if(listresult.size() == 0)
       Str = "error";
     else
@@ -38,7 +42,13 @@ public class checkmoney {
   
   public String statistics()
   {
-    
+    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+    String date = df.format(new Date());// new Date()为获取当前系统时间，也可使用当前时间戳
+    System.out.println(date);
+    income = mysql.queryInByUid(loginID,"0000-00-00",date);
+    out = mysql.queryOutByUid(loginID, "0000-00-00", date);
+    balance = income - out;
+    Str = "success";
     return Str;
   }
 
@@ -98,6 +108,30 @@ public class checkmoney {
 
   public void setAmount(String amount) {
     this.amount = amount;
+  }
+
+  public float getBalance() {
+    return balance;
+  }
+
+  public void setBalance(float balance) {
+    this.balance = balance;
+  }
+
+  public float getIncome() {
+    return income;
+  }
+
+  public void setIncome(float income) {
+    this.income = income;
+  }
+
+  public float getOut() {
+    return out;
+  }
+
+  public void setOut(float out) {
+    this.out = out;
   }
 
 }

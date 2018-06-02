@@ -217,8 +217,28 @@
 				<section id="widget-grid" class="">
 				
 				<!-- START ROW -->
+				<table class="table table-bordered" id="main_info_table">
+				<h1>Return Three results</h1>
+				<thead>
+					<tr>
+						<th> Balance </th>
+						<th> ALLINCOME </th>
+						<th> ALLOUT </th>
+						
+						
+					</tr>
+				</thead>
+				<tr>
+											
+				<th><s:property value='balance'/></th>
+				<th><s:property value='income'/></th>
+				<th><s:property value='out'/></th>
 				
-				
+				</tr>			
+											
+	
+				</table>
+								
 					
 				
 					

@@ -148,104 +148,203 @@ public ArrayList<transactionBean> queryChargeByTimeByUid(String uid, String star
         e.printStackTrace();
     }
     return transactions;
-}
+  }
 
 
-public ArrayList<transactionBean> queryTransactionByTimeByUid(String uid, String start, String finish){
-    ArrayList<String> cards = new ArrayList<>();
+  public ArrayList<transactionBean> queryTransactionByTimeByUid(String uid, String start, String finish){
+      ArrayList<String> cards = new ArrayList<>();
+      ArrayList<transactionBean> transactions = new ArrayList<>();
+      try{
+          Statement stmt = conn.createStatement();
+          String sql = String.format("select ucid from usercard where uid = %s", uid);
+          System.out.println(sql);
+          ResultSet rs = stmt.executeQuery(sql);
+          while(rs.next())
+              cards.add(rs.getString("ucid"));
+  
+          String card;
+          for(int i=0; i<cards.size(); i++){
+              card = cards.get(i);
+              //System.out.println(card);
+              sql = String.format("select * from transaction where UserCard_ucid = \"%s\" and tatime "
+                      +"between \"%s\" and \"%s\"", card, start, finish);
+              System.out.println(sql);
+              rs = stmt.executeQuery(sql);
+              while(rs.next()){
+                  //System.out.println("flag");
+                  transactionBean trans = new transactionBean();
+                  trans.setAmount(rs.getFloat("amount"));
+                  trans.setUcid(card);
+                  trans.setMaid(rs.getString("MerchantAccout_maid"));
+                  trans.setTime(rs.getTimestamp("tatime"));
+                  transactions.add(trans);
+              }
+          }
+      } catch (SQLException e){
+          e.printStackTrace();
+      }
+      return transactions;
+  }
+  
+  public ArrayList<transactionBean> queryTransactionByUid(String uid){
+      Date today = new Date(System.currentTimeMillis());
+      SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+      return queryTransactionByTimeByUid(uid,"1970-01-01", df.format(today));
+  }
+  
+  public ArrayList<transactionBean> queryTransactionByTimeByMid(String mid, String start, String finish){
     ArrayList<transactionBean> transactions = new ArrayList<>();
     try{
         Statement stmt = conn.createStatement();
-        String sql = String.format("select ucid from usercard where uid = %s", uid);
-        System.out.println(sql);
+        String sql = String.format("select maid from merchantaccount where mid = %s", mid);
         ResultSet rs = stmt.executeQuery(sql);
+        String maid = "";
         while(rs.next())
-            cards.add(rs.getString("ucid"));
-
-        String card;
-        for(int i=0; i<cards.size(); i++){
-            card = cards.get(i);
-            //System.out.println(card);
-            sql = String.format("select * from transaction where UserCard_ucid = \"%s\" and tatime "
-                    +"between \"%s\" and \"%s\"", card, start, finish);
-            System.out.println(sql);
-            rs = stmt.executeQuery(sql);
-            while(rs.next()){
-                //System.out.println("flag");
-                transactionBean trans = new transactionBean();
-                trans.setAmount(rs.getFloat("amount"));
-                trans.setUcid(card);
-                trans.setMaid(rs.getString("MerchantAccout_maid"));
-                trans.setTime(rs.getTimestamp("tatime"));
-                transactions.add(trans);
-            }
+            maid = rs.getString("maid");
+  
+        sql = String.format("select * from transaction where MerchantAccount_maid = %s" +
+                " and tatime between \"%s\" and \"%s\"", maid, start, finish);
+        rs = stmt.executeQuery(sql);
+        while(rs.next()){
+            transactionBean trans = new transactionBean();
+            trans.setAmount(rs.getFloat("amount"));
+            trans.setUcid(rs.getString("UserCard_ucid"));
+            trans.setMaid(maid);
+            trans.setTime(rs.getTimestamp("tatime"));
+            transactions.add(trans);
         }
     } catch (SQLException e){
         e.printStackTrace();
     }
     return transactions;
-}
-
-public ArrayList<transactionBean> queryTransactionByUid(String uid){
+  }
+  
+  public ArrayList<transactionBean> queryTransactionByMid(String mid){
     Date today = new Date(System.currentTimeMillis());
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-    return queryTransactionByTimeByUid(uid,"1970-01-01", df.format(today));
-}
-
-public ArrayList<transactionBean> queryTransactionByTimeByMid(String mid, String start, String finish){
-  ArrayList<transactionBean> transactions = new ArrayList<>();
-  try{
-      Statement stmt = conn.createStatement();
-      String sql = String.format("select maid from merchantaccount where mid = %s", mid);
-      ResultSet rs = stmt.executeQuery(sql);
-      String maid = "";
-      while(rs.next())
-          maid = rs.getString("maid");
-
-      sql = String.format("select * from transaction where MerchantAccount_maid = %s" +
-              " and tatime between \"%s\" and \"%s\"", maid, start, finish);
-      rs = stmt.executeQuery(sql);
-      while(rs.next()){
-          transactionBean trans = new transactionBean();
-          trans.setAmount(rs.getFloat("amount"));
-          trans.setUcid(rs.getString("UserCard_ucid"));
-          trans.setMaid(maid);
-          trans.setTime(rs.getTimestamp("tatime"));
-          transactions.add(trans);
-      }
-  } catch (SQLException e){
-      e.printStackTrace();
+    return queryTransactionByTimeByMid(mid, "1970-01-01", df.format(today));
   }
-  return transactions;
-}
-
-public ArrayList<transactionBean> queryTransactionByMid(String mid){
-  Date today = new Date(System.currentTimeMillis());
-  SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-  return queryTransactionByTimeByMid(mid, "1970-01-01", df.format(today));
-}
-
-public ArrayList<transactionBean> queryTransactions(){
-  ArrayList<transactionBean> transactions = new ArrayList<>();
-  try{
-      Statement stmt = conn.createStatement();
-      String sql = String.format("select * from transaction");
-      ResultSet rs = stmt.executeQuery(sql);
-      while(rs.next()){
-          transactionBean t = new transactionBean();
-          t.setTime(rs.getTimestamp("tatime"));
-          t.setAmount(rs.getFloat("amount"));
-          t.setMaid(rs.getString("MerchantAccount_maid"));
-          t.setUcid(rs.getString("UserCard_ucid"));
-          transactions.add(t);
-      }
-  } catch (SQLException e){
-      e.printStackTrace();
+  
+  public ArrayList<transactionBean> queryTransactions(){
+    ArrayList<transactionBean> transactions = new ArrayList<>();
+    try{
+        Statement stmt = conn.createStatement();
+        String sql = String.format("select * from transaction");
+        ResultSet rs = stmt.executeQuery(sql);
+        while(rs.next()){
+            transactionBean t = new transactionBean();
+            t.setTime(rs.getTimestamp("tatime"));
+            t.setAmount(rs.getFloat("amount"));
+            t.setMaid(rs.getString("MerchantAccount_maid"));
+            t.setUcid(rs.getString("UserCard_ucid"));
+            transactions.add(t);
+        }
+    } catch (SQLException e){
+        e.printStackTrace();
+    }
+    return transactions;
   }
-  return transactions;
-}
+  
+  public ArrayList<transactionBean> queryByMid(String mid, String start, String finish){
+    ArrayList<transactionBean> in = queryTransactionByTimeByMid(mid, start, finish);
+    ArrayList<transactionBean> out = queryWithdrawByTimeByMid(mid, start, finish);
+    in.addAll(out);
+    Collections.sort(in);
+    return in;
+  }
 
+  public ArrayList<transactionBean> queryWithdrawByTimeByMid(String mid, String start, String finish){
+      ArrayList<transactionBean> withdraw = new ArrayList<>();
+      try{
+          Statement stmt = conn.createStatement();
+          String sql = String.format("select * from withdrawrecord where merchant_mid = \"%s\" "+
+                  "and withdrawtime between \"%s\" and \"%s\" ", mid, start, finish);
+          ResultSet rs = stmt.executeQuery(sql);
+          while(rs.next()){
+              transactionBean cur = new transactionBean();
+              cur.setAmount(rs.getFloat("amount"));
+              cur.setMaid(mid);
+              cur.setTime(rs.getTimestamp("withdrawtime"));
+              cur.setUcid("Bank");
+              withdraw.add(cur);
+          }
+      }catch (SQLException e){
+          e.printStackTrace();
+      }
+      return withdraw;
+  }
 
+  
+  // 查询某学生充值了多少钱
+  public float queryInByUid(String uid, String start, String finish){
+      double total = 0.0;
+      try{
+          Statement stmt = conn.createStatement();
+          String sql = String.format("select amount from chargerecord where User_uid = \"%s\"" +
+                  "and chargetime between \"%s\" and \"%s\"", uid, start, finish);
+          ResultSet rs = stmt.executeQuery(sql);
+          while(rs.next()){
+              total += rs.getFloat("amount");
+          }
+      }catch (SQLException e){
+          e.printStackTrace();
+      }
+      return (float) total;
+  }
+
+  // 查询某学生花了多少钱
+  public float queryOutByUid(String uid, String start, String finish){
+      double total = 0.0;
+      ArrayList<String> cards = new ArrayList<>();
+      try{
+          Statement stmt = conn.createStatement();
+          String sql = String.format("select * from usercard where uid = \"%s\"", uid);
+          ResultSet rs = stmt.executeQuery(sql);
+          while(rs.next()){
+              cards.add(rs.getString("ucid"));
+          }
+
+          int length = cards.size();
+          for(int i=0; i<length; i++){
+              String card = cards.get(i);
+              sql = String.format("select amount from transaction where UserCard_ucid = \"%s\""
+                      + "and tatime between \"%s\" and \"%s\"", card, start, finish);
+              rs = stmt.executeQuery(sql);
+              while(rs.next()){
+                  total += rs.getFloat("amount");
+              }
+          }
+      }catch (SQLException e){
+          e.printStackTrace();
+      }
+      return (float) total;
+  }
+
+  // 查询商家收入
+  public float queryInByMid(String mid, String start, String finish){
+      double total = 0.0;
+      try{
+          String maid;
+          Statement stmt = conn.createStatement();
+          String sql = String.format("select maid from merchantaccount where mid = \"%s\"", mid);
+          ResultSet rs = stmt.executeQuery(sql);
+          while(rs.next()){
+              maid = rs.getString("maid");
+          }
+
+          sql = String.format("select amount from transaction where MerchantAccout_maid = \"%s\""
+                      + "and tatime between \"%s\" and \"%s\"", mid, start, finish);
+          rs = stmt.executeQuery(sql);
+          while(rs.next()){
+              total += rs.getFloat("amount");
+          }
+      }catch (SQLException e){
+          e.printStackTrace();
+      }
+      return (float) total;
+  }
+
+  
 //更新用户的卡
   public String updateCard(String uid){
       // in our system, we use the card format like "uid-num"
