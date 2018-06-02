@@ -160,6 +160,33 @@ public class dbHelper {
       }
       return st;
   }
+  
+  public boolean updateUserInfo(String uid, String name, String pwd, String email) throws SQLException{
+    boolean st = false;
+    Statement stmt = conn.createStatement();
+    String sql = String.format("update user set name = \"%s\", password = \"%s\", email = \"%s\" where uid = \"%s\"", name, pwd, email, uid);
+    int i = stmt.executeUpdate(sql);
+    if(i == 1){
+        st = true;
+    }
+    return st;
+  }
+  
+  
+  public boolean updateMerchantInfo(String mid, String name, String pwd, String bankid) throws SQLException{
+      boolean st = false;
+      Statement stmt = conn.createStatement();
+      String sql = String.format("update merchant set name = \"%s\", password = \"%s\", bankid = \"%s\" where mid = \"%s\"", name, pwd, bankid, mid);
+      int i = stmt.executeUpdate(sql);
+      //System.out.println("4");
+      if(i == 1){
+        //System.out.println("5");
+          st = true;
+      }
+      return st;
+  }
+
+
   public float getUserBalance(String uid){
       float balance = -1;
       try{

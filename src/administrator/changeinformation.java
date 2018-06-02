@@ -21,6 +21,7 @@ public class changeinformation {
   private String password;
   private String name;
   private String four;
+  public boolean result;
   public String passhref()
   {
     Str = "success";
@@ -68,11 +69,37 @@ public class changeinformation {
     //nameID不变,其他的进行更新
     if(Identity == 0)
     {
-      
+      try {
+        result = mysql.updateUserInfo(nameID, name, password, four);
+      } catch (SQLException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+      if(result == true)
+        Str = "success";
+      else
+        Str = "error";
     }
     else if(Identity == 1)
     {
-      
+      try {
+        System.out.println(nameID+name+password+four);
+        result = mysql.updateMerchantInfo(nameID, name, password, four);
+        System.out.println("1");
+      } catch (SQLException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+      if(result == true)
+      {
+        System.out.println("2");
+        Str = "success";
+      }
+      else
+      {
+        System.out.println("3");
+        Str = "error";
+      }
     }
     else
     {

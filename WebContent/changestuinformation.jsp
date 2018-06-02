@@ -271,7 +271,7 @@
 											 	<section>
 													<label class="label">Email</label>
 													<label class="input">
-														<input type="text" name="email" value="<s:property value="#u.email"/>" class="input-sm">
+														<input type="text" name="four" value="<s:property value="#u.four"/>" class="input-sm">
 													</label>
 												</section>	
 												<!-- 
