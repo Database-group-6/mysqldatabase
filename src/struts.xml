@@ -81,7 +81,19 @@
         	<result name = "success">/losestucard.jsp</result>				
 			<result name = "error">/stufail.jsp</result>
         </action>
-        <action name = "moneycalculatestu" class = "studentuser.checkmoney" method = "passhref">
+        <action name = "freeze" class = "studentuser.stulosecard" method = "freeze">
+        	<result name = "success">/freezestucard.jsp</result>				
+			<result name = "error">/stufail.jsp</result>
+        </action>
+        <action name = "freezefin" class = "studentuser.stulosecard" method = "freezefin">
+        	<result name = "success">/successdomainstu.jsp</result>				
+			<result name = "error">/stufail.jsp</result>
+        </action>
+        <action name = "newcard" class = "studentuser.stulosecard" method = "newcard">
+        	<result name = "success">/successdomainstu.jsp</result>				
+			<result name = "error">/stufail.jsp</result>
+        </action>
+        <action name = "moneycalculatestu" class = "studentuser.checkmoney" method = "statistics">
         	<result name = "success">/stustatistics.jsp</result>				
 			<result name = "error">/stufail.jsp</result>
         </action>

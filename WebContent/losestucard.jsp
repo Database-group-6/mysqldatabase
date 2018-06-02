@@ -218,9 +218,22 @@
 				
 				<!-- START ROW -->
 				
-				<h1  size="50">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Finish the table and Press the Button to freeze </h1>
-				<h1>table</h1>
-				<h2>password+losetime+freezeconfirm</h2>	
+				<h1  size="50">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Press the Button to freeze and Finish the table </h1>
+				
+				<!-- <h2>password+losetime+freezeconfirm</h2>   -->
+				
+				<h1 style="color:red ">If you card has lost ,Press next button!</h1>
+				<s:form action="freeze" id="freezeaction" class="smart-form client-form">																
+						<button type="submit" class="btn btn-info" size="50">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lost report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						</button>				
+				</s:form>
+				<h1 style="color:red ">You can define a new card here !</h1>
+				<s:form action="newcard" id="freezeaction" class="smart-form client-form">																
+						<button type="submit" class="btn btn-info" size ="50">
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;New Card&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						</button>				
+				</s:form>
 					
 					
 						<!-- END COL -->

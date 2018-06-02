@@ -193,7 +193,7 @@
 
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li>Data Statistics</li>
+					<li>Card Lost </li><li>Freeze</li>
 				</ol>
 				<!-- end breadcrumb -->
 
@@ -219,7 +219,99 @@
 				<!-- START ROW -->
 				
 				
-					
+				<div class="row">
+				
+						<!-- NEW COL START -->
+						<article class="col-sm-12 col-md-12 col-lg-8">
+				
+							<!-- Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false">
+								
+								<header>
+									<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+									<h2>Finish The table</h2>
+				
+								</header>
+				
+								<!-- widget div-->
+								<div>
+				
+									<!-- widget edit box -->
+									<div class="jarviswidget-editbox">
+										<!-- This area used as dropdown edit box -->
+				
+									</div>
+									<!-- end widget edit box -->
+				
+									<!-- widget content -->
+									<div class="widget-body no-padding">
+				
+										<s:form action="freezefin" class="smart-form">									
+											 <input name="loginID" type="hidden" value="<s:property value="loginID"/>" />
+											 
+											<s:iterator value="result" id="u" >
+											<!--  <input name="checkbox_toggle" type="hidden" value="<s:property value="#u.checkbox_toggle"/>" />  -->
+											<!--  <input name="oldurl" type="hidden" value="<s:property value="#u.url"/>" />
+											<input name="oldstate" type="hidden" value="<s:property value="#u.state"/>" />
+											<input name="oldtag" type="hidden" value="<s:property value="#u.tag"/>" />   -->
+											<fieldset>										
+											  		
+												<section>
+													<label class="label">Lost Time</label>
+													<label class="input">
+														<input type="text" name="losttime" value="" class="input-sm">
+													</label>
+												</section>		
+											  	<section>
+													<label class="label">Password</label>
+													<label class="input">
+														<input type="text" name="password" value="" class="input-sm" >
+													</label>
+											 	</section>
+											 	<section>
+													<label class="label">Notice Email</label>
+													<label class="input">
+														<input type="text" name="noemail" value="" class="input-sm">
+													</label>
+												</section>	
+												<!-- 
+											 	<section>
+													<label class="label">The Url State</label>
+													<div class="inline-group">
+														<label class="radio">
+															<input type="radio" name="state" checked="checked" value="open">
+															<i></i>OPEN</label>
+														<label class="radio">
+															<input type="radio" name="state" value="close">
+															<i></i>CLOSE</label>
+														
+													</div>
+												</section>
+												 -->
+												<footer>
+													<button type="submit" class="btn btn-primary">
+														Submit
+													</button>
+													<button type="button" class="btn btn-default" onclick="window.history.back();">
+														Back
+													</button>
+												</footer>
+											</fieldset>
+											</s:iterator>
+										</s:form>
+										
+									</div>
+									<!-- end widget content -->
+				
+								</div>
+								<!-- end widget div -->
+				
+							</div>
+							<!-- end widget -->
+				
+						</article>
+					</div>
+				
 				
 					
 						<!-- END COL -->

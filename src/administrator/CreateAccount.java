@@ -24,7 +24,10 @@ public class CreateAccount {
   {
     resultcreate = mysql.createMerchant(mid, name, pwd, bankid);
     if(resultcreate == true)
+    {
+      mysql.updateAccount(mid);
       Str = "success";
+    }
     else
       Str = "error";
     //Str = "success";
@@ -36,6 +39,7 @@ public class CreateAccount {
     resultcreate = mysql.createUser(uid, name, pwd, email);
     if(resultcreate == true)
     {
+      mysql.updateCard(uid);
       Str = "success";
       System.out.println("1");
     }

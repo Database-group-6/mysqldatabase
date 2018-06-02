@@ -32,7 +32,7 @@ public class checktransaction {
       //System.out.println(startdate);
       //student
       System.out.println(finishdate);
-      listresult = mysql.queryTransactionByTimeByUid(nameID,startdate,finishdate);
+      listresult = mysql.queryByUid(nameID,startdate,finishdate);
       if(listresult.size() == 0)
         Str = "error";
       //System.out.println(startdate.toString());

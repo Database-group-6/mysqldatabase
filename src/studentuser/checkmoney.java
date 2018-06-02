@@ -35,6 +35,12 @@ public class checkmoney {
     
     return Str;
   }
+  
+  public String statistics()
+  {
+    
+    return Str;
+  }
 
   public String getLoginID() {
     return loginID;
