@@ -152,24 +152,23 @@
 
 				<ul>
 					<li>
-						<a href='<s:url action="whiteinformation-stu"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Home</span></a>
+						<a href='<s:url action="whiteinformation"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Home</span></a>
 					</li>
 						
 					<li>
-						<a href='<s:url action="changestuinformation"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-table"></i> <span class="menu-item-parent">Change Information</span></a>
+						<a href='<s:url action="createstudent"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-table"></i> <span class="menu-item-parent">Create Student Account</span></a>
 						
 					</li>
 					
+					<li>
+						<a href='<s:url action="createmerchant"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-map-marker"></i> <span class="menu-item-parent">Create Merchant Account</span></a>
+					</li>
 					
 					<li>
-						<a href='<s:url action="transactionstu"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-desktop"></i> <span class="menu-item-parent">Check Transaction</span></a>
+						<a href='<s:url action="transaction"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-desktop"></i> <span class="menu-item-parent">Check Transaction</span></a>
 					</li>
 					<li>
-						<a href='<s:url action="losestucard"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-map-marker"></i> <span class="menu-item-parent">Lose Card</span></a>
-					</li>
-					 
-					<li>
-						<a href='<s:url action="moneycalculatestu"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Money Statistics</span></a>
+						<a href='<s:url action="change"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Change Information</span></a>
 					</li>
 					<li>
 						<a href="login.jsp"><i class="fa fa-lg fa-fw fa-pencil-square-o"></i> <span class="menu-item-parent">Logout</span></a>
@@ -193,7 +192,7 @@
 
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li>Card Lost</li><li>Freeze</li>
+					<li>Calculate Domain</li>
 				</ol>
 				<!-- end breadcrumb -->
 
@@ -218,28 +217,107 @@
 				
 				<!-- START ROW -->
 				
-				<h1  size="50">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Press the Button to freeze and Finish the table </h1>
-				
-				<!-- <h2>password+losetime+freezeconfirm</h2>   -->
-				
-				<h1 style="color:red ">If you card has lost ,Press next button!</h1>
-				<s:form action="freeze" id="freezeaction" class="smart-form client-form">																
-						<input name="loginID" type="hidden" value="<s:property value="loginID"/>" />
-						<button type="submit" class="btn btn-info" size="50">
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lost report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						</button>				
-				</s:form>
-				<h1 style="color:red ">You can define a new card here !</h1>
-				<s:form action="newcard" id="freezeaction" class="smart-form client-form">	
-				<input name="loginID" type="hidden" value="<s:property value="loginID"/>" />															
-						<button type="submit" class="btn btn-info" size ="50">
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;New Card&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						</button>				
-				</s:form>
+				<h1  size="50">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Welcome Use Payment System </h1>
+				<h1>≥‰÷µ</h1>
+				<s:form action="charge" class="smart-form">
+					<input name="loginID" type="hidden" value="<s:property value="loginID"/>" />
 					
+
+					<fieldset>
+						
+						<section>
+							<label class="label">USERID</label>
+							<label class="input">
+								<input type="text" name="nameID" class="input-sm">
+							</label>
+						</section>
+						<section>
+							<label class="label">Amount</label>
+							<label class="input">
+								<input type="text" name="money" class="input-sm">
+							</label>
+						</section>	
+					</fieldset>
+																	
+					<footer>
+							<button type="submit" class="btn btn-primary">
+								Submit
+							</button>
+							<button type="button" class="btn btn-default" onclick="window.history.back();">
+								Back
+							</button>
+					</footer>
+				</s:form>
+				<h1>Ã·œ÷</h1>
+				<s:form action="withdraw" class="smart-form">
+					<input name="loginID" type="hidden" value="<s:property value="loginID"/>" />
+					
+
+					<fieldset>
+						
+						<section>
+							<label class="label">MERCHANTID</label>
+							<label class="input">
+								<input type="text" name="nameID" class="input-sm">
+							</label>
+						</section>
+						<section>
+							<label class="label">Amount</label>
+							<label class="input">
+								<input type="text" name="money" class="input-sm">
+							</label>
+						</section>	
+					</fieldset>
+																	
+					<footer>
+							<button type="submit" class="btn btn-primary">
+								Submit
+							</button>
+							<button type="button" class="btn btn-default" onclick="window.history.back();">
+								Back
+							</button>
+					</footer>
+				</s:form>
+				<h1>trade</h1>	
+				<s:form action="tran" class="smart-form">
+					<input name="loginID" type="hidden" value="<s:property value="loginID"/>" />
+					
+
+					<fieldset>
+						
+						<section>
+							<label class="label">USERID</label>
+							<label class="input">
+								<input type="text" name="userID" class="input-sm">
+							</label>
+						</section>
+						<section>
+							<label class="label">MERCHANTID</label>
+							<label class="input">
+								<input type="text" name="merchantID" class="input-sm">
+							</label>
+						</section>
+						<section>
+							<label class="label">Amount</label>
+							<label class="input">
+								<input type="text" name="money" class="input-sm">
+							</label>
+						</section>
+							
+					</fieldset>
+																	
+					<footer>
+							<button type="submit" class="btn btn-primary">
+								Submit
+							</button>
+							<button type="button" class="btn btn-default" onclick="window.history.back();">
+								Back
+							</button>
+					</footer>
+				</s:form>	
 					
 						<!-- END COL -->
-						</section>
+				</section>
 						
 			</div>
 	

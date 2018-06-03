@@ -1,8 +1,8 @@
-package studentuser;
+package merchant;
 
 import java.util.ArrayList;
 
-public class stulosecard {
+public class merchantlosecard {
   
   public String Str;
   private String loginID;
@@ -28,7 +28,7 @@ public class stulosecard {
   }
   public String freezefin()
   {
-    Str = "success";
+    
     return Str;
   }
 

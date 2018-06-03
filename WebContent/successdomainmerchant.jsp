@@ -88,7 +88,6 @@
 				</div>
 				<!-- END AJAX-DROPDOWN -->
 			</div>
-
 <ul>
 							<li>
 								contact us: 2282550468@qq.com / best.xutao@foxmail.com / 648923307@qq.com
@@ -145,31 +144,26 @@
 			will not initialize.
 			-->
 			<nav>
-				<!-- NOTE: Notice the gaps after each icon usage <i></i>..
-				Please note that these links work a bit different than
-				traditional hre="" links. See documentation for details.
-				-->
-
 				<ul>
 					<li>
-						<a href='<s:url action="whiteinformation-stu"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Home</span></a>
+						<a href='<s:url action="whiteinformation-merchant"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Home</span></a>
 					</li>
 						
 					<li>
-						<a href='<s:url action="changestuinformation"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-table"></i> <span class="menu-item-parent">Change Information</span></a>
+						<a href='<s:url action="changemerchantinformation"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-table"></i> <span class="menu-item-parent">Change Information</span></a>
 						
 					</li>
 					
 					
 					<li>
-						<a href='<s:url action="transactionstu"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-desktop"></i> <span class="menu-item-parent">Check Transaction</span></a>
+						<a href='<s:url action="transactionmerchant"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-desktop"></i> <span class="menu-item-parent">Check Transaction</span></a>
 					</li>
 					<li>
-						<a href='<s:url action="losestucard"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-map-marker"></i> <span class="menu-item-parent">Lose Card</span></a>
+						<a href='<s:url action="losemerchantcard"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-map-marker"></i> <span class="menu-item-parent">Lose Card</span></a>
 					</li>
 					 
 					<li>
-						<a href='<s:url action="moneycalculatestu"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Money Statistics</span></a>
+						<a href='<s:url action="moneycalculatemerchant"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Money Statistics</span></a>
 					</li>
 					<li>
 						<a href="login.jsp"><i class="fa fa-lg fa-fw fa-pencil-square-o"></i> <span class="menu-item-parent">Logout</span></a>
@@ -193,7 +187,7 @@
 
 				<!-- breadcrumb -->
 				<ol class="breadcrumb">
-					<li>Card Lost</li><li>Freeze</li>
+					<li>Home</li><li>Domain</li>
 				</ol>
 				<!-- end breadcrumb -->
 
@@ -218,33 +212,37 @@
 				
 				<!-- START ROW -->
 				
-				<h1  size="50">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Press the Button to freeze and Finish the table </h1>
+				<h1 size="80" style="color:red ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Successd Domain </h1>
+				<img src="img/urlpic.jpg" alt=""  style="width:210px">
+					<div class="row">
 				
-				<!-- <h2>password+losetime+freezeconfirm</h2>   -->
+						<!-- NEW COL START -->
+						
 				
-				<h1 style="color:red ">If you card has lost ,Press next button!</h1>
-				<s:form action="freeze" id="freezeaction" class="smart-form client-form">																
-						<input name="loginID" type="hidden" value="<s:property value="loginID"/>" />
-						<button type="submit" class="btn btn-info" size="50">
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lost report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						</button>				
-				</s:form>
-				<h1 style="color:red ">You can define a new card here !</h1>
-				<s:form action="newcard" id="freezeaction" class="smart-form client-form">	
-				<input name="loginID" type="hidden" value="<s:property value="loginID"/>" />															
-						<button type="submit" class="btn btn-info" size ="50">
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;New Card&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						</button>				
-				</s:form>
-					
-					
+							<!-- Widget ID (each widget will need unique ID)-->
+							<div class="jarviswidget" id="wid-id-1" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-custombutton="false">
+								
+				
+								<!-- widget div-->
+
+									
+			
+									<!-- end widget content -->
+				
+								
+								<!-- end widget div -->
+				
+							</div>
+							<!-- end widget -->
+
+					</div>
 						<!-- END COL -->
 						</section>
 						
 			</div>
 	
 			<!-- END MAIN CONTENT -->
-		<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
+			<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
 		<script data-pace-options='{ "restartOnRequestAfter": true }' src="js/plugin/pace/pace.min.js"></script>
 
 		<!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
@@ -261,7 +259,6 @@
 				document.write('<script src="js/libs/jquery-ui-1.10.3.min.js"><\/script>');
 			}
 		</script>
-
 
 		<!-- MAIN APP JS FILE -->
 		<script src="js/app.js"></script>
@@ -299,7 +296,6 @@
 			})();
 
 		</script>
-
-
+			
 </body>
 </html>

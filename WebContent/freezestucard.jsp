@@ -249,7 +249,7 @@
 										<s:form action="freezefin" class="smart-form">									
 											 <input name="loginID" type="hidden" value="<s:property value="loginID"/>" />
 											 
-											<s:iterator value="result" id="u" >
+											
 											<!--  <input name="checkbox_toggle" type="hidden" value="<s:property value="#u.checkbox_toggle"/>" />  -->
 											<!--  <input name="oldurl" type="hidden" value="<s:property value="#u.url"/>" />
 											<input name="oldstate" type="hidden" value="<s:property value="#u.state"/>" />
@@ -297,7 +297,7 @@
 													</button>
 												</footer>
 											</fieldset>
-											</s:iterator>
+											
 										</s:form>
 										
 									</div>

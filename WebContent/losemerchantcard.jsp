@@ -152,24 +152,24 @@
 
 				<ul>
 					<li>
-						<a href='<s:url action="whiteinformation-stu"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Home</span></a>
+						<a href='<s:url action="whiteinformation-merchant"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Home</span></a>
 					</li>
 						
 					<li>
-						<a href='<s:url action="changestuinformation"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-table"></i> <span class="menu-item-parent">Change Information</span></a>
+						<a href='<s:url action="changemerchantinformation"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-table"></i> <span class="menu-item-parent">Change Information</span></a>
 						
 					</li>
 					
 					
 					<li>
-						<a href='<s:url action="transactionstu"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-desktop"></i> <span class="menu-item-parent">Check Transaction</span></a>
+						<a href='<s:url action="transactionmerchant"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-desktop"></i> <span class="menu-item-parent">Check Transaction</span></a>
 					</li>
 					<li>
-						<a href='<s:url action="losestucard"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-map-marker"></i> <span class="menu-item-parent">Lose Card</span></a>
+						<a href='<s:url action="losemerchantcard"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-map-marker"></i> <span class="menu-item-parent">Lose Card</span></a>
 					</li>
 					 
 					<li>
-						<a href='<s:url action="moneycalculatestu"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Money Statistics</span></a>
+						<a href='<s:url action="moneycalculatemerchant"><s:param name="loginID" value='loginID' /></s:url>'><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Money Statistics</span></a>
 					</li>
 					<li>
 						<a href="login.jsp"><i class="fa fa-lg fa-fw fa-pencil-square-o"></i> <span class="menu-item-parent">Logout</span></a>
@@ -223,19 +223,13 @@
 				<!-- <h2>password+losetime+freezeconfirm</h2>   -->
 				
 				<h1 style="color:red ">If you card has lost ,Press next button!</h1>
-				<s:form action="freeze" id="freezeaction" class="smart-form client-form">																
+				<s:form action="freezemer" id="freezeaction" class="smart-form client-form">																
 						<input name="loginID" type="hidden" value="<s:property value="loginID"/>" />
 						<button type="submit" class="btn btn-info" size="50">
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lost report&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						</button>				
 				</s:form>
-				<h1 style="color:red ">You can define a new card here !</h1>
-				<s:form action="newcard" id="freezeaction" class="smart-form client-form">	
-				<input name="loginID" type="hidden" value="<s:property value="loginID"/>" />															
-						<button type="submit" class="btn btn-info" size ="50">
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;New Card&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						</button>				
-				</s:form>
+
 					
 					
 						<!-- END COL -->

@@ -8,7 +8,7 @@
     <package name="LogAction" extends="struts-default">
     	<action name = "LoginSearch" class = "LogAction.LoginAction" method = "search">
         	<result name = "stusuccess">/stumain.jsp</result>
-        	<result name = "mersuccess">/mermain.jsp</result>
+        	<result name = "mersuccess">/merchantmain.jsp</result>
         	<result name = "admsuccess">/admmain.jsp</result>				
 			<result name = "error">/wronglogin.jsp</result>
         </action>
@@ -97,5 +97,56 @@
         	<result name = "success">/stustatistics.jsp</result>				
 			<result name = "error">/stufail.jsp</result>
         </action>
+
+    </package>
+    <package name="merchant" extends="struts-default">
+    	<action name = "whiteinformation-merchant" class = "merchant.checkmoney" method = "passhref">
+        	<result name = "success">/merchantmain.jsp</result>				
+			<result name = "error">/merchantfail.jsp</result>
+        </action>
+        <action name = "changemerchantinformation" class = "merchant.changemerchantinformation" method = "passhref">
+        	<result name = "success">/changemerchantinformation.jsp</result>				
+			<result name = "error">/merchantfail.jsp</result>
+        </action>
+        <action name = "updatemerchant" class = "merchant.changemerchantinformation" method = "update">
+        	<result name = "success">/successdomainmerchant.jsp</result>				
+			<result name = "error">/merchantfail.jsp</result>
+        </action>
+        <action name = "transactionmerchant" class = "merchant.checkmoney" method = "passhref">
+        	<result name = "success">/merchanttransaction.jsp</result>				
+			<result name = "error">/merchantfail.jsp</result>
+        </action>
+        <action name = "checkmerchant" class = "merchant.checkmoney" method = "check">
+        	<result name = "success">/merchanttraresult.jsp</result>				
+			<result name = "error">/merchantfail.jsp</result>
+        </action>
+        <action name = "losemerchantcard" class = "merchant.merchantlosecard" method = "passhref">
+        	<result name = "success">/losemerchantcard.jsp</result>				
+			<result name = "error">/merchantfail.jsp</result>
+        </action>
+		<action name = "freezemer" class = "merchant.merchantlosecard" method = "freeze">
+        	<result name = "success">/successdomainmerchant.jsp</result>				
+			<result name = "error">/merchantfail.jsp</result>
+        </action>
+
+        <action name = "moneycalculatemerchant" class = "merchant.checkmoney" method = "statistics">
+        	<result name = "success">/merchantstatistics.jsp</result>				
+			<result name = "error">/merchantfail.jsp</result>
+        </action>
+    </package>
+    <package name="domainmessage" extends="struts-default">
+    	<action name = "withdraw" class = "domainmessage.domainmessage" method = "withdraw">
+        	<result name = "success">/domain.jsp</result>				
+			<result name = "error">/domainerror.jsp</result>
+        </action>
+        <action name = "charge" class = "domainmessage.domainmessage" method = "charge">
+        	<result name = "success">/domain.jsp</result>				
+			<result name = "error">/domainerror.jsp</result>
+        </action>
+        <action name = "tran" class = "domainmessage.domainmessage" method = "tran">
+        	<result name = "success">/domain.jsp</result>				
+			<result name = "error">/domainerror.jsp</result>
+        </action>
+        
     </package>
 </struts>

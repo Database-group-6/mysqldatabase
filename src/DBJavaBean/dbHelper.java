@@ -196,13 +196,13 @@ public ArrayList<transactionBean> queryChargeByTimeByUid(String uid, String star
     ArrayList<transactionBean> transactions = new ArrayList<>();
     try{
         Statement stmt = conn.createStatement();
-        String sql = String.format("select maid from merchantaccount where mid = %s", mid);
+        String sql = String.format("select maid from merchantaccout where mid = %s", mid);
         ResultSet rs = stmt.executeQuery(sql);
         String maid = "";
         while(rs.next())
             maid = rs.getString("maid");
   
-        sql = String.format("select * from transaction where MerchantAccount_maid = %s" +
+        sql = String.format("select * from transaction where MerchantAccout_maid = %s" +
                 " and tatime between \"%s\" and \"%s\"", maid, start, finish);
         rs = stmt.executeQuery(sql);
         while(rs.next()){
@@ -326,7 +326,7 @@ public ArrayList<transactionBean> queryChargeByTimeByUid(String uid, String star
       try{
           String maid;
           Statement stmt = conn.createStatement();
-          String sql = String.format("select maid from merchantaccount where mid = \"%s\"", mid);
+          String sql = String.format("select maid from merchantaccout where mid = \"%s\"", mid);
           ResultSet rs = stmt.executeQuery(sql);
           while(rs.next()){
               maid = rs.getString("maid");
@@ -343,7 +343,16 @@ public ArrayList<transactionBean> queryChargeByTimeByUid(String uid, String star
       }
       return (float) total;
   }
-
+//查询某学生充值了多少钱
+  public float queryOutByMid(String mid, String start, String finish){
+    ArrayList<transactionBean> all = queryWithdrawByTimeByMid(mid, start, finish);
+    double total = 0.0;
+    for(transactionBean cur : all){
+        total += cur.getAmount();
+    }
+    return (float) total;
+}
+               
   
 //更新用户的卡
   public String updateCard(String uid){
@@ -367,8 +376,8 @@ public ArrayList<transactionBean> queryChargeByTimeByUid(String uid, String star
           }
 
           //add a new card and add the relationship
-          String sql1 = String.format("insert into usercard(ucid, uid, balance, status) values(%s, %s, %f, %d)", ucid, uid, balance, 0);
-          String sql2 = String.format("insert into userown(isUsed, UserCard_ucid, User_uid) values(%d, %s, %s)", 1, ucid, uid);
+          String sql1 = String.format("insert into usercard(ucid, uid, balance, status) values( \"%s\",  \"%s\", %f, %d)", ucid, uid, balance, 0);
+          String sql2 = String.format("insert into userown(isUsed, UserCard_ucid, User_uid) values(%d,  \"%s\",  \"%s\")", 1, ucid, uid);
           stmt.executeUpdate(sql1);
           stmt.executeUpdate(sql2);
 
@@ -439,7 +448,7 @@ public ArrayList<transactionBean> queryChargeByTimeByUid(String uid, String star
       boolean st = false;
       try{
           Statement stmt  = conn.createStatement();
-          String sql = String.format("insert into merchant(mid, name, password, bankid) values(%s, %s, %s, %s)", mid, name, pwd, bankid);
+          String sql = String.format("insert into merchant(mid, name, password, bankid) values( \"%s\",  \"%s\",  \"%s\",  \"%s\")", mid, name, pwd, bankid);
           int i = stmt.executeUpdate(sql);
           if(i == 1)
               st = true;
@@ -455,7 +464,7 @@ public ArrayList<transactionBean> queryChargeByTimeByUid(String uid, String star
       boolean st = false;
       try{
           Statement stmt = conn.createStatement();
-          String sql = String.format("insert into user(uid, name, password, email) values(%s, %s, %s, %s)", uid, name, pwd, email);
+          String sql = String.format("insert into user(uid, name, password, email) values( \"%s\",  \"%s\",  \"%s\",  \"%s\")", uid, name, pwd, email);
           int i = stmt.executeUpdate(sql);
           if(i == 1)
               st = true;
@@ -502,6 +511,75 @@ public ArrayList<transactionBean> queryChargeByTimeByUid(String uid, String star
       return balance;
   }
 
+//获取商家余额
+  public float getMerchantBalance(String mid){
+      float balance = -1;
+      try{
+          Statement stmt = conn.createStatement();
+          String maid = getMerchantAccount(mid);
+          String sql = String.format("select balance from merchantaccout where maid = %s", maid);
+          ResultSet rs = stmt.executeQuery(sql);
+          while(rs.next()){
+              balance = rs.getFloat("balance");
+          }
+
+      }catch (SQLException e){
+          e.printStackTrace();
+      }
+      return balance;
+  }
+//进行交易
+  public boolean startTransaction(String uid, String mid, float price){
+      boolean st = false;
+      // start the transaction, and in the sql schema
+      // there is a trigger to judge  if the transaction is legal
+      try{
+          String sql = String.format("insert into transaction(UserCard_ucid, MerchantAccout_maid, amount) values(\"%s\", \"%s\", %f)", uid, mid, price);
+          Statement stmt = conn.createStatement();
+          if(stmt.executeUpdate(sql) == 1){
+              st = true;
+          }
+      } catch(SQLException e){
+          e.printStackTrace();
+      }
+      return st;
+  }
+
+
+  //提款
+  public boolean withdraw(String mid, float amount) throws SQLException{
+      boolean st = false;
+      String maid = getMerchantAccount(mid);
+      float balance = getMerchantBalance(mid);
+      // get the current balance of the merchant, and judge if the withdraw is ok?
+      float new_balance = balance - amount;
+      if(new_balance > 0) {
+          String sql = String.format("update mrechantaccout set balance = %f where maid = \"%s\"", new_balance, maid);
+          Statement stmt = conn.createStatement();
+          int i = stmt.executeUpdate(sql);
+          if(i == 1){
+              st = true;
+          }
+      }
+      return st;
+  }
+//充值
+  public boolean charge(String uid, float amount) throws SQLException{
+      String ucid = getUserCard(uid);
+      float balance = getUserBalance(uid);
+      float new_balance = balance + amount;
+      Statement stmt = conn.createStatement();
+      String sql = String.format("update usercard set balance = %f where ucid = %s", new_balance, ucid);
+      int i = stmt.executeUpdate(sql);
+      if(i == 1){
+          return true;
+      }else{
+          return false;
+      }
+  }
+
+
+  
   //登陆检测
   public boolean login(String id, String pwd, int type){
       String sql = "";
@@ -513,7 +591,7 @@ public ArrayList<transactionBean> queryChargeByTimeByUid(String uid, String star
           sql = String.format("select * from user where uid = %s and password = %s", id, pwd);
       }
       else if (type == 1){
-          sql = String.format("select * from merchant where uid = %s and password = %s", id, pwd);
+          sql = String.format("select * from merchant where mid = %s and password = %s", id, pwd);
       }
       try{
           Statement stmt = conn.createStatement();
